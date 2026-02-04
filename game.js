@@ -2,15 +2,32 @@ const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 const scoreDiv = document.getElementById('score');
 const restartBtn = document.getElementById('restart-btn');
+const difficultySelect = document.getElementById('difficulty-select');
+
+// 난이도별 설정값
+const difficultySettings = {
+  easyha: { pipeSpeed: 1, gap: 150, gravity: 0.35 }, // EASY하 모드
+  normal: { pipeSpeed: 1, gap: 120, gravity: 0.5 },  // NORMAL 모드
+  hard:   { pipeSpeed: 2, gap: 120, gravity: 0.5 }   // 하드 모드
+};
+
+let currentDifficulty = 'hard'; // 기본값: 하드 모드
 
 // Game variables
-let bird, pipes, score, gravity, velocity, isGameOver, gameInterval;
+let bird, pipes, score, gravity, velocity, isGameOver, gameInterval, pipeSpeed, gap;
+
+function applyDifficulty() {
+  const setting = difficultySettings[currentDifficulty];
+  pipeSpeed = setting.pipeSpeed;
+  gap = setting.gap;
+  gravity = setting.gravity;
+}
 
 function resetGame() {
+  applyDifficulty();
   bird = { x: 60, y: 200, w: 32, h: 32 };
   pipes = [];
   score = 0;
-  gravity = 0.5;
   velocity = 0;
   isGameOver = false;
   restartBtn.style.display = 'none';
@@ -35,7 +52,6 @@ function drawPipes() {
 }
 
 function addPipe() {
-  const gap = 120;
   const minHeight = 40;
   const maxHeight = canvas.height - gap - minHeight;
   const top = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
@@ -50,7 +66,7 @@ function addPipe() {
 
 function updatePipes() {
   pipes.forEach(pipe => {
-    pipe.x -= 2;
+    pipe.x -= pipeSpeed;
   });
   // Remove pipes that are out of screen
   if (pipes.length && pipes[0].x + pipes[0].w < 0) {
@@ -126,5 +142,11 @@ window.addEventListener('keydown', function(e) {
 });
 canvas.addEventListener('mousedown', flap);
 restartBtn.onclick = restartGame;
+
+difficultySelect.value = currentDifficulty;
+difficultySelect.addEventListener('change', function() {
+  currentDifficulty = difficultySelect.value;
+  resetGame();
+});
 
 resetGame();
