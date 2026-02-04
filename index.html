@@ -10,6 +10,8 @@
     #game-container { background: #70c5ce; border: 2px solid #333; margin-top: 10px; }
     #score { color: #fff; font-size: 1.2em; margin: 10px; }
     button { margin: 10px; padding: 8px 20px; font-size: 1em; }
+    #difficulty-select { margin-left: 24px; font-size: 1em; padding: 6px; }
+    .side-box { display: flex; flex-direction: column; align-items: flex-end; margin-left: 24px; }
   </style>
 </head>
 <body>
@@ -25,6 +27,14 @@
         <canvas id="game" width="320" height="480"></canvas>
       </div>
       <button onclick="restartGame()" id="restart-btn" style="display:none;">Restart</button>
+    </div>
+    <div class="side-box">
+      <label for="difficulty-select" style="color:#fff; margin-bottom: 6px;">난이도 선택</label>
+      <select id="difficulty-select">
+        <option value="easyha">EASY하 모드</option>
+        <option value="normal">NORMAL 모드</option>
+        <option value="hard">하드 모드</option>
+      </select>
     </div>
   </div>
   <script src="game.js"></script>
