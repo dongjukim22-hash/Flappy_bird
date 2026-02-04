@@ -6,9 +6,9 @@ const difficultySelect = document.getElementById('difficulty-select');
 
 // 난이도별 설정값
 const difficultySettings = {
-  easyha: { pipeSpeed: 0.5, gap: 300, gravity: 0.1 }, // EASY하 모드
-  normal: { pipeSpeed: 1, gap: 200, gravity: 0.3 },  // NORMAL 모드
-  hard:   { pipeSpeed: 2, gap: 120, gravity: 0.5 }   // 하드 모드
+  easyha: { pipeSpeed: 0.5, gap: 300, gravity: 0.3 }, // EASY하 모드
+  normal: { pipeSpeed: 1, gap: 200, gravity: 0.3 },   // NORMAL 모드
+  hard:   { pipeSpeed: 2, gap: 120, gravity: 0.5 }    // 하드 모드
 };
 
 let currentDifficulty = 'hard'; // 기본값: 하드 모드
