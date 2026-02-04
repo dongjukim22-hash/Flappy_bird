@@ -14,11 +14,19 @@
 </head>
 <body>
   <h1>Flappy Bird</h1>
-  <div id="score">Score: 0</div>
-  <div id="game-container">
-    <canvas id="game" width="320" height="480"></canvas>
+  <div style="display: flex; flex-direction: row; align-items: flex-start;">
+    <div id="guide" style="color: #fff; background: rgba(0,0,0,0.2); padding: 16px; margin-right: 24px; border-radius: 8px; min-width: 220px; font-size: 1em; white-space: pre-line;">
+      게임 방법 : 이지하 선임을 위해 친절하게 적습니다
+스페이스 바를 눌러 장애물을 피하시오!
+    </div>
+    <div>
+      <div id="score">Score: 0</div>
+      <div id="game-container">
+        <canvas id="game" width="320" height="480"></canvas>
+      </div>
+      <button onclick="restartGame()" id="restart-btn" style="display:none;">Restart</button>
+    </div>
   </div>
-  <button onclick="restartGame()" id="restart-btn" style="display:none;">Restart</button>
   <script src="game.js"></script>
 </body>
 </html>
